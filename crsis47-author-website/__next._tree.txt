@@ -1,0 +1,5 @@
+:HL["/crsis47-author-website/_next/static/css/a5b2d8fd07846153.css","style"]
+:HL["/crsis47-author-website/_next/static/css/85cfc9876a771fd5.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"(english)","h":112,"c":"$Q2"}]]
+0:{"b":"ja9DRXbAWquv8BzPxJ0QS","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

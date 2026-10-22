@@ -1,0 +1,7 @@
+:HL["/crsis47-author-website/_next/static/css/a5b2d8fd07846153.css","style"]
+:HL["/crsis47-author-website/_next/static/css/85cfc9876a771fd5.css","style"]
+4:[["children",{"s":"__PAGE__","h":160}]]
+3:[["children",{"s":{"n":"slug","t":"d","k":"when-the-evidence-changes","s":[]},"h":65632,"c":"$Q4"}]]
+2:[["children",{"s":"books","h":131168,"c":"$Q3"}]]
+1:[["children",{"s":"(english)","h":131184,"c":"$Q2"}]]
+0:{"b":"ja9DRXbAWquv8BzPxJ0QS","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
