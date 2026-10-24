@@ -1,0 +1,43 @@
+name: Install Cloudflare analytics on published pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-cloudflare-analytics.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Add beacon to all exported HTML pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path('crsis47-author-website')
+          beacon = """<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"55663cd4cc6b436aaa1584bbecfb321e"}'></script>"""
+          pages = list(root.rglob('*.html'))
+          assert len(pages) >= 168, f'Expected full multilingual export, found {len(pages)} HTML files'
+          modified = 0
+          for path in pages:
+              html = path.read_text(encoding='utf-8')
+              assert '</body>' in html, f'Missing body close: {path}'
+              if '55663cd4cc6b436aaa1584bbecfb321e' not in html:
+                  path.write_text(html.replace('</body>', beacon + '</body>'), encoding='utf-8')
+                  modified += 1
+          assert all('55663cd4cc6b436aaa1584bbecfb321e' in p.read_text(encoding='utf-8') for p in pages)
+          print(f'Cloudflare analytics verified in {len(pages)} pages; changed {modified}')
+          PY
+      - name: Commit and publish updated static pages
+        run: |
+          if ! git diff --quiet -- crsis47-author-website; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add crsis47-author-website
+            git commit -m "Publish Cloudflare analytics on multilingual pages"
+            git push
+          fi
