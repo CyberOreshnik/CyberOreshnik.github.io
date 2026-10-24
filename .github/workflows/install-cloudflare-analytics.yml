@@ -6,6 +6,10 @@ on:
       - '.github/workflows/install-cloudflare-analytics.yml'
       - 'google24caedb31a201cfd.html'
       - 'crsis47-author-website/google24caedb31a201cfd.html'
+      - 'robots.txt'
+      - 'crsis47-author-website/robots.txt'
+      - 'crsis47-author-website/sitemap.xml'
+      - '.github/scripts/check-sitemap.py'
   workflow_dispatch:
 permissions:
   contents: write
@@ -78,3 +82,6 @@ jobs:
                       print(f'Waiting for Pages publication: {url}: {error}', flush=True)
                       time.sleep(5)
           PY
+      - name: Audit live sitemap, Googlebot access and all 168 canonical URLs
+        timeout-minutes: 6
+        run: python3 .github/scripts/check-sitemap.py

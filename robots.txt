@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://cyberoreshnik.github.io/crsis47-author-website/sitemap.xml
