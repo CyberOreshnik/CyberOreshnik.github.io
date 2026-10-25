@@ -1,9 +1,9 @@
-:HL["/crsis47-author-website/_next/static/css/a5b2d8fd07846153.css","style"]
-:HL["/crsis47-author-website/_next/static/css/85cfc9876a771fd5.css","style"]
-:HL["/crsis47-author-website/_next/static/css/860fb5265c760d56.css","style"]
-:HL["/crsis47-author-website/_next/static/css/8ce9224b3e8e23cc.css","style"]
-:HL["/crsis47-author-website/_next/static/css/e2e313c4947217e9.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/0m3xea30u7xy5.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/0hf0avrzt_bof.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/1j-e3ayg_a_bs.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/1iqe0cz9-ffs9.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/0ftdh8yly1lkr.css","style"]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"path","t":"oc","k":"books/the-machine-has-the-keys","s":[]},"h":65632,"c":"$Q3"}]]
-1:[["children",{"s":{"n":"locale","t":"d","k":"fa","s":["_not-found","_global-error","about","books","contact","research","updates","icon.svg","robots.txt"]},"h":196720,"c":"$Q2"}]]
-0:{"b":"ja9DRXbAWquv8BzPxJ0QS","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+1:[["children",{"s":{"n":"locale","t":"d","k":"fa","s":["about","books","contact","research","updates"]},"h":196720,"c":"$Q2"}]]
+0:{"b":"VebUFG12uXMF4oZB1ZvL3","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

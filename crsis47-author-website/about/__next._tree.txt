@@ -1,5 +1,5 @@
-:HL["/crsis47-author-website/_next/static/css/a5b2d8fd07846153.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/0m3xea30u7xy5.css","style"]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":"about","h":96,"c":"$Q3"}]]
 1:[["children",{"s":"(english)","h":112,"c":"$Q2"}]]
-0:{"b":"ja9DRXbAWquv8BzPxJ0QS","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"VebUFG12uXMF4oZB1ZvL3","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

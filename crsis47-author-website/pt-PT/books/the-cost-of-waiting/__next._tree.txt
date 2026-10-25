@@ -1,0 +1,9 @@
+:HL["/crsis47-author-website/_next/static/chunks/0m3xea30u7xy5.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/0hf0avrzt_bof.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/1j-e3ayg_a_bs.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/1iqe0cz9-ffs9.css","style"]
+:HL["/crsis47-author-website/_next/static/chunks/0ftdh8yly1lkr.css","style"]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":{"n":"path","t":"oc","k":"books/the-cost-of-waiting","s":[]},"h":65632,"c":"$Q3"}]]
+1:[["children",{"s":{"n":"locale","t":"d","k":"pt-PT","s":["about","books","contact","research","updates"]},"h":196720,"c":"$Q2"}]]
+0:{"b":"VebUFG12uXMF4oZB1ZvL3","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
