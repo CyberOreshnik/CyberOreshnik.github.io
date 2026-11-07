@@ -1,0 +1,89 @@
+name: Repair published Case Studies navigation
+on:
+  push:
+    branches: [fix/instagram-case-studies-navigation]
+    paths: [.github/workflows/repair-case-studies-navigation.yml]
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Patch and verify published navigation only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, subprocess
+          from html.parser import HTMLParser
+          root = Path('crsis47-author-website')
+          url = 'https://cyberoreshnik.github.io/crsis47-public-site./case-studies/index.html'
+          label = 'Case Studies & Evidence'
+          anchor = '<a href="' + url + '">Case Studies &amp; Evidence</a>'
+          pattern = re.compile(r'(<nav\b[^>]*\bid="main-navigation"[^>]*>)')
+          changed = []
+          html_count = 0
+          for path in sorted(root.rglob('*.html')):
+              old = path.read_text(encoding='utf-8')
+              matches = list(pattern.finditer(old))
+              if not matches:
+                  continue
+              assert len(matches) == 1, str(path)
+              start = matches[0].end()
+              end = old.index('</nav>', start)
+              if url in old[start:end]:
+                  continue
+              new = pattern.sub(lambda m: m.group(1) + anchor, old, count=1)
+              assert new.replace(anchor, '', 1) == old
+              path.write_text(new, encoding='utf-8')
+              changed.append(str(path))
+              html_count += 1
+          old_item = '[{href:"/books",label:"T+47 Books"}'
+          new_item = '[{href:"' + url + '",label:"' + label + '"},{href:"/books",label:"T+47 Books"}'
+          js_count = 0
+          for path in sorted((root / '_next/static/chunks').glob('*.js')):
+              old = path.read_text(encoding='utf-8')
+              if old_item not in old:
+                  continue
+              assert old.count(old_item) == 1
+              new = old.replace(old_item, new_item)
+              assert new.replace(new_item, old_item) == old
+              path.write_text(new, encoding='utf-8')
+              subprocess.run(['node', '--check', str(path)], check=True)
+              changed.append(str(path))
+              js_count += 1
+          assert html_count >= 182, html_count
+          assert js_count == 2, js_count
+          class Nav(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.active = False
+                  self.links = []
+              def handle_starttag(self, tag, attrs):
+                  d = dict(attrs)
+                  if tag == 'nav' and d.get('id') == 'main-navigation':
+                      self.active = True
+                  if self.active and tag == 'a':
+                      self.links.append(d.get('href'))
+              def handle_endtag(self, tag):
+                  if tag == 'nav':
+                      self.active = False
+          for name in changed:
+              if not name.endswith('.html'):
+                  continue
+              nav = Nav()
+              nav.feed(Path(name).read_text(encoding='utf-8'))
+              assert nav.links[0] == url, name
+              assert len(nav.links) == 6, (name, nav.links)
+          print(f'PASS: {html_count} static navigation menus and {js_count} hydrated header bundles; only navigation additions; JavaScript syntax valid.')
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'], 'a') as report:
+              report.write(f'Navigation-only repair: {html_count} HTML pages, {js_count} JS bundles. Six links per menu; existing page content unchanged. Destination: {url}\n')
+          PY
+      - name: Commit verified repair to this review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crsis47-author-website
+          git diff --cached --stat
+          git commit -m "Restore Case Studies navigation in published static site"
+          git push origin HEAD:fix/instagram-case-studies-navigation
